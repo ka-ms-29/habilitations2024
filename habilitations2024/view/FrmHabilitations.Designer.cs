@@ -264,6 +264,7 @@ namespace habilitations2024.view
             // 
             this.txtPwd1.Location = new System.Drawing.Point(53, 34);
             this.txtPwd1.Name = "txtPwd1";
+            this.txtPwd1.PasswordChar = '*';
             this.txtPwd1.Size = new System.Drawing.Size(340, 26);
             this.txtPwd1.TabIndex = 4;
             // 
@@ -313,6 +314,9 @@ namespace habilitations2024.view
             this.Controls.Add(this.grbPwd);
             this.Controls.Add(this.grbDeveloppeur);
             this.Controls.Add(this.grbLesDeveloppeurs);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "FrmHabilitations";
             this.Text = "Habilitations";
             this.grbLesDeveloppeurs.ResumeLayout(false);

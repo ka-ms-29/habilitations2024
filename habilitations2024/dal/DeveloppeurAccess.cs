@@ -144,5 +144,37 @@ namespace habilitations2024.dal
                 }
             }
         }
+
+        //methode pour rechercer le developpeur dans BDD a l'aide d'un requete
+        public Boolean ControleAuthentification(Admin admin)
+        {
+            if(access.Manager != null)
+            {
+                string req = "select * from developpeur d join profil p on d.idprofil";
+                req += "where d.nom=@nom and d.prenom=@prenom and pwd=SHA2(@pwd,256) and p.nom='admin'; ";
+                Dictionary<string, object> parameters = new Dictionary<string, object>();
+                parameters.Add("@nom", admin.Nom);
+                parameters.Add("@prenom", admin.Prenom);
+                parameters.Add("@pwd", admin.Pwd);
+
+                try
+                {
+                    List<object[]> records = access.Manager.ReqSelect(req, parameters);
+
+                    if(records != null)
+                    {
+                        return (records.Count > 0);
+                    }
+
+                }
+                catch(Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                    Environment.Exit(0);
+
+                }
+            }
+            return false;
+        }
     }
 }

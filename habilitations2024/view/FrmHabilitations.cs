@@ -34,6 +34,7 @@ namespace habilitations2024.view
         private FrmHabilitationsController controller;
 
         // construction des composants graphiques et appel des autres initialisations
+        
         public FrmHabilitations()
         {
             InitializeComponent();
@@ -43,6 +44,7 @@ namespace habilitations2024.view
         /// <summary>
         /// Initialisations :
         /// Création du controleur et remplissage des listes
+        /// 6_ajout les deux methodes Remplir..
         /// </summary>
         private void Init()
         {
@@ -53,9 +55,9 @@ namespace habilitations2024.view
             EnCoursModifPwd(false);
         }
 
-        /// <summary>
-        /// Affiche les développeurs
-        /// </summary>
+        
+        //6_ Affiche les développeurs
+        
         private void RemplirListeDeveloppeurs()
         {
             List<Developpeur> lesDeveloppeurs = controller.GetLesDeveloppeurs();
@@ -66,9 +68,9 @@ namespace habilitations2024.view
             dgvDeveloppeurs.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
         }
 
-        /// <summary>
-        /// Affiche les profils
-        /// </summary>
+        
+        // 6_ Affiche les profils
+        
         private void RemplirListeProfils()
         {
             List<Profil> lesProfils = controller.GetLesProfils();
@@ -80,7 +82,7 @@ namespace habilitations2024.view
 
 
         /// <summary>
-        /// Modification d'affichage suivant si on est en cours de modif ou d'ajout d'un developpeur
+        /// 8_Modification d'affichage suivant si on est en cours de modif ou d'ajout d'un developpeur
         /// </summary>
         /// <param name="modif"></param>
         private void EnCourseModifDeveloppeur(Boolean modif)
@@ -103,6 +105,7 @@ namespace habilitations2024.view
 
         /// <summary>
         /// Modification d'affichage suivant si on est ou non en cours de modif du pwd
+        /// 10-
         /// </summary>
         /// <param name="modif"></param>
         private void EnCoursModifPwd(Boolean modif)
@@ -114,6 +117,7 @@ namespace habilitations2024.view
             txtPwd2.Text = "";
         }
 
+        // 9_fonctionnalité de modification d'un développeur
         private void BtnDemandeModifDev_Click_1(object sender, EventArgs e)
         {
             if (dgvDeveloppeurs.SelectedRows.Count > 0)
@@ -133,6 +137,7 @@ namespace habilitations2024.view
 
         }
 
+        //7_fonctionnalité de suppression d'un développeur
         private void BtnDemandeSupprDev_Click_1(object sender, EventArgs e)
         {
             if (dgvDeveloppeurs.SelectedRows.Count > 0)
@@ -150,7 +155,7 @@ namespace habilitations2024.view
             }
 
         }
-
+        // 10_
         private void BtnDemandeChangePwd_Click_1(object sender, EventArgs e)
         {
             if (dgvDeveloppeurs.SelectedRows.Count > 0)
@@ -163,7 +168,7 @@ namespace habilitations2024.view
             }
 
         }
-
+        //8_fonctionnalité d'ajout d'un développeur
         private void BtnEnregDev_Click_1(object sender, EventArgs e)
         {
             if (!txtNom.Text.Equals("") && !txtPrenom.Text.Equals("") && !txtTel.Text.Equals("") && !txtMail.Text.Equals("") && cboProfil.SelectedIndex != -1)
@@ -192,7 +197,7 @@ namespace habilitations2024.view
                 MessageBox.Show("Tous les champs doivent être remplis.", "Information");
             }
         }
-
+        //8_fonctionnalité d'ajout d'un développeur (annulation)
         private void BtnAnnulDev_Click_1(object sender, EventArgs e)
         {
             if (MessageBox.Show("Voulez-vous vraiment annuler ?", "Confirmation", MessageBoxButtons.YesNo) == DialogResult.Yes)
@@ -200,7 +205,7 @@ namespace habilitations2024.view
                 EnCourseModifDeveloppeur(false);
             }
         }
-
+        // 10_ 
         private void BtnEnregPwd_Click_1(object sender, EventArgs e)
         {
             if (!txtPwd1.Text.Equals("") && !txtPwd2.Text.Equals("") && txtPwd1.Text.Equals(txtPwd2.Text))
@@ -215,7 +220,7 @@ namespace habilitations2024.view
                 MessageBox.Show("Les 2 zones doivent être remplies et de contenu identique", "Information");
             }
         }
-
+        //10_ 
         private void BtnAnnulPwd_Click_1(object sender, EventArgs e)
         {
             EnCoursModifPwd(false);
