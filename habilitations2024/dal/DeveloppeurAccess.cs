@@ -20,13 +20,17 @@ namespace habilitations2024.dal
         }
 
         //methode GetLesDeveloppeur qui récupère et retourne les développeurs
-        public List<Developpeur> GetLesDeveloppeurs()
+        public List<Developpeur> GetLesDeveloppeurs(string profilFiltre = "")
         {
             List<Developpeur> lesDeveloppeurs = new List<Developpeur>();
             if (access.Manager != null)
             {
                 string req = "select d.iddeveloppeur as iddeveloppeur, d.nom as nom, d.prenom as prenom, d.tel as tel, d.mail as mail, p.idprofil as idprofil, p.nom as profil ";
                 req += "from developpeur d join profil p on (d.idprofil = p.idprofil) ";
+                if (!string.IsNullOrEmpty(profilFiltre))
+                {
+                    req += $"where p.nom = '{profilFiltre.Replace("'", "''")}' ";
+                }
                 req += "order by nom, prenom;";
                 try
                 {

@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using habilitations2024.controller;
+using habilitations2024.dal;
 using habilitations2024.model;
 
 namespace habilitations2024.view
@@ -32,9 +33,13 @@ namespace habilitations2024.view
         /// Controleur de la fenêtre
         /// </summary>
         private FrmHabilitationsController controller;
+        /// <summary>
+        /// Objet pour gérer la liste des FiltreProfils
+        /// </summary>
+        private BindingSource bdgFiltreProfils = new BindingSource();
 
         // construction des composants graphiques et appel des autres initialisations
-        
+
         public FrmHabilitations()
         {
             InitializeComponent();
@@ -53,24 +58,42 @@ namespace habilitations2024.view
             RemplirListeProfils();
             EnCourseModifDeveloppeur(false);
             EnCoursModifPwd(false);
+            RemplirFiltreProfils();
         }
 
         
         //6_ Affiche les développeurs
         
-        private void RemplirListeDeveloppeurs()
+        private void RemplirListeDeveloppeurs(string profilFiltre = "")
         {
-            List<Developpeur> lesDeveloppeurs = controller.GetLesDeveloppeurs();
+            
+            List<Developpeur> lesDeveloppeurs = controller.GetLesDeveloppeurs(profilFiltre);
             bdgDeveloppeurs.DataSource = lesDeveloppeurs;
             dgvDeveloppeurs.DataSource = bdgDeveloppeurs;
             dgvDeveloppeurs.Columns["iddeveloppeur"].Visible = false;
             dgvDeveloppeurs.Columns["pwd"].Visible = false;
             dgvDeveloppeurs.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
         }
+        /// <summary>
+        /// devoir4_remplir la nouvelle comboBox avec les profils
+        /// </summary>
+        private void RemplirFiltreProfils()
+        {
+            List<Profil> profils = controller.GetLesProfils();
+            //inserer un profil vide a la liste profils
+            Profil profilVide = new Profil(0, "");
+            profils.Insert(0, profilVide);
 
-        
-        // 6_ Affiche les profils
-        
+            bdgFiltreProfils.DataSource = profils;
+            cboFiltrProfil.DataSource = bdgFiltreProfils;
+            // selectioné par defut la premiere ligne 
+            cboFiltrProfil.SelectedIndex = 0;
+        }
+
+        /// <summary>
+        /// 6_ Affiche les profils
+        /// </summary>
+
         private void RemplirListeProfils()
         {
             List<Profil> lesProfils = controller.GetLesProfils();
@@ -224,6 +247,18 @@ namespace habilitations2024.view
         private void BtnAnnulPwd_Click_1(object sender, EventArgs e)
         {
             EnCoursModifPwd(false);
+        }
+
+        private void cboFiltrProfil_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string filtreProfil = "";
+
+            if (cboFiltrProfil.SelectedItem is Profil profilSelectionne)
+            {
+                filtreProfil = profilSelectionne.Nom;
+            }
+
+            RemplirListeDeveloppeurs(filtreProfil);
         }
     }
 

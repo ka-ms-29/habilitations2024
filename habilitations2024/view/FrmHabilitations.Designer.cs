@@ -55,6 +55,8 @@ namespace habilitations2024.view
             this.BtnEnregPwd = new System.Windows.Forms.Button();
             this.lblEncore = new System.Windows.Forms.Label();
             this.lblPwd = new System.Windows.Forms.Label();
+            this.cboFiltrProfil = new System.Windows.Forms.ComboBox();
+            this.lblFiltrProfil = new System.Windows.Forms.Label();
             this.grbLesDeveloppeurs.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDeveloppeurs)).BeginInit();
             this.grbDeveloppeur.SuspendLayout();
@@ -63,6 +65,8 @@ namespace habilitations2024.view
             // 
             // grbLesDeveloppeurs
             // 
+            this.grbLesDeveloppeurs.Controls.Add(this.lblFiltrProfil);
+            this.grbLesDeveloppeurs.Controls.Add(this.cboFiltrProfil);
             this.grbLesDeveloppeurs.Controls.Add(this.BtnDemandeSupprDev);
             this.grbLesDeveloppeurs.Controls.Add(this.BtnDemandeChangePwd);
             this.grbLesDeveloppeurs.Controls.Add(this.BtnDemandeModifDev);
@@ -306,6 +310,24 @@ namespace habilitations2024.view
             this.lblPwd.TabIndex = 0;
             this.lblPwd.Text = "pwd";
             // 
+            // cboFiltrProfil
+            // 
+            this.cboFiltrProfil.FormattingEnabled = true;
+            this.cboFiltrProfil.Location = new System.Drawing.Point(719, 272);
+            this.cboFiltrProfil.Name = "cboFiltrProfil";
+            this.cboFiltrProfil.Size = new System.Drawing.Size(144, 28);
+            this.cboFiltrProfil.TabIndex = 5;
+            this.cboFiltrProfil.SelectedIndexChanged += new System.EventHandler(this.cboFiltrProfil_SelectedIndexChanged);
+            // 
+            // lblFiltrProfil
+            // 
+            this.lblFiltrProfil.AutoSize = true;
+            this.lblFiltrProfil.Location = new System.Drawing.Point(608, 279);
+            this.lblFiltrProfil.Name = "lblFiltrProfil";
+            this.lblFiltrProfil.Size = new System.Drawing.Size(105, 20);
+            this.lblFiltrProfil.TabIndex = 6;
+            this.lblFiltrProfil.Text = "filtre par motif";
+            // 
             // FrmHabilitations
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -320,6 +342,7 @@ namespace habilitations2024.view
             this.Name = "FrmHabilitations";
             this.Text = "Habilitations";
             this.grbLesDeveloppeurs.ResumeLayout(false);
+            this.grbLesDeveloppeurs.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDeveloppeurs)).EndInit();
             this.grbDeveloppeur.ResumeLayout(false);
             this.grbDeveloppeur.PerformLayout();
@@ -358,6 +381,8 @@ namespace habilitations2024.view
         private System.Windows.Forms.Label lblPwd;
         private System.Windows.Forms.TextBox txtPwd2;
         private System.Windows.Forms.TextBox txtPwd1;
+        private System.Windows.Forms.Label lblFiltrProfil;
+        private System.Windows.Forms.ComboBox cboFiltrProfil;
     }
 }
 

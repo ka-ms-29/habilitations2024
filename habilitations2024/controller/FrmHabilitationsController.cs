@@ -32,9 +32,9 @@ namespace habilitations2024.controller
         }
 
         // Récupère et retourne les infos des développeurs
-        public List<Developpeur> GetLesDeveloppeurs()
+        public List<Developpeur> GetLesDeveloppeurs(string profilFiltre = "")
         {
-            return developpeurAccess.GetLesDeveloppeurs();
+            return developpeurAccess.GetLesDeveloppeurs(profilFiltre);
         }
 
      
