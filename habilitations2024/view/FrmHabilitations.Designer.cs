@@ -324,9 +324,9 @@ namespace habilitations2024.view
             this.lblFiltrProfil.AutoSize = true;
             this.lblFiltrProfil.Location = new System.Drawing.Point(608, 279);
             this.lblFiltrProfil.Name = "lblFiltrProfil";
-            this.lblFiltrProfil.Size = new System.Drawing.Size(105, 20);
+            this.lblFiltrProfil.Size = new System.Drawing.Size(103, 20);
             this.lblFiltrProfil.TabIndex = 6;
-            this.lblFiltrProfil.Text = "filtre par motif";
+            this.lblFiltrProfil.Text = "filtre sur profil\r\n";
             // 
             // FrmHabilitations
             // 
